@@ -4,23 +4,33 @@ R. Arun Chandru. Manuscript dated 27 September 2026.
 
 ## Abstract
 
-We determine the growing-window tracial pressure of the actual prime-power
-translation operator attached to a fixed holomorphic cuspidal newform of
-trivial character. Every intermediate translation is killed at the interval
-boundary. At fixed coupling s the logarithmic trace is
-s^2 ell^2/12 + O(ell sqrt(log ell)), with a bounded lower error; the
-corresponding fixed-window Weyl coefficient has quadratic logarithmic
-growth ell^2/48. A uniform coupling estimate gives a large-deviation law at
-every diverging intermediate scale up to ell^2. At the central scale ell,
-the arithmetic trace converges to the square-root variance-profile Toeplitz
-law, with moments 1/3 and 4/15 and logarithmic tail coefficient -3 in both
-directions. An exact weighted autocorrelation identity explains the pressure
-constant. We prove global L2 stability modulo affine phase, with optimal
-square-root exponent and sharp small-deficit squared-distance coefficient 6.
-An explicit taper family preserves total leading prime variance while
-changing the boundary pressure. Higher prime powers and ramification are
-restored at bounded logarithmic cost, and fixed tuples of inequivalent forms
-give an orthogonally invariant, noncommuting colored limit.
+We determine the growing-window tracial pressure of the actual
+prime-power translation operator attached to a fixed holomorphic
+cuspidal newform of trivial character. Every intermediate translation
+is killed at the interval boundary. If the interval has length $\ell$,
+the logarithmic tracial exponential at fixed coupling $s$ is
+$s^2\ell^2/12+O_{f,s}(\ell\sqrt{\log\ell})$, with a bounded lower
+error. The corresponding logarithmic Weil operator has Weyl
+coefficient $K_{f,\ell}$ satisfying
+$\log K_{f,\ell}=\ell^2/48+\log(2\ell/\sqrt N)
++O_f(\ell\sqrt{\log\ell})$.
+A uniform coupling estimate gives the spectral large-deviation law
+at every diverging intermediate scale up to $\ell^2$.
+At the central scale $\ell$, the arithmetic trace converges to the
+$\sqrt a$ variance-profile Toeplitz law, whose second and fourth
+moments are $1/3$ and $4/15$. We determine its logarithmic tail
+coefficient, equal to $-3$ in both directions. A sharp weighted
+autocorrelation identity explains the pressure constant. We prove
+global $L^2$ stability modulo affine phase, with optimal square-root
+exponent and sharp small-deficit squared-distance coefficient $6$.
+An explicit taper family preserves total leading prime variance
+while changing the boundary pressure. Higher prime powers and ramification change
+the logarithmic pressure by a bounded amount, without being small
+in operator norm. Fixed tuples of inequivalent forms give an
+orthogonally invariant, noncommuting colored limit. The proofs
+retain boundary survival through a uniform finite-grid comparison;
+fixed-moment convergence alone is not used to exchange the window
+and coupling limits.
 
 ## Contents
 
