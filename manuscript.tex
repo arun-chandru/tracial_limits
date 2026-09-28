@@ -1,0 +1,1824 @@
+\documentclass[11pt,reqno]{amsart}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{lmodern}
+\usepackage[a4paper,margin=27mm]{geometry}
+\usepackage{amsmath,amssymb,mathtools,mathrsfs}
+\usepackage{microtype}
+\usepackage{xurl}
+\usepackage[hidelinks]{hyperref}
+\hypersetup{pdftitle={Weyl growth and tracial limits for arithmetic translations},pdfauthor={R. Arun Chandru}}
+\numberwithin{equation}{section}
+\setcounter{tocdepth}{1}
+\allowdisplaybreaks[2]
+\emergencystretch=2em
+\raggedbottom
+\newcommand{\R}{\mathbb R}
+\newcommand{\C}{\mathbb C}
+\newcommand{\E}{\mathbb E}
+\newcommand{\Tr}{\operatorname{Tr}}
+\newcommand{\tr}{\operatorname{tr}}
+\newcommand{\supp}{\operatorname{supp}}
+\newcommand{\dd}{\,\mathrm d}
+\newcommand{\ii}{\mathrm i}
+\newcommand{\one}{\mathbf 1}
+\newcommand{\norm}[1]{\lVert#1\rVert}
+\newcommand{\abs}[1]{\lvert#1\rvert}
+\newcommand{\ip}[2]{\langle#1,#2\rangle}
+\title[Weyl growth and arithmetic tracial limits]{Weyl growth and tracial limits\texorpdfstring{\\}{ }for arithmetic translations}
+\author{R. Arun Chandru}
+\email{arun.chandru@gmail.com}
+\date{27 September 2026}
+\subjclass[2020]{Primary 35P20, 11F30; Secondary 47B35, 60B20, 60F10}
+\keywords{Weyl coefficient, holomorphic cusp form, killed translation,
+Rankin--Selberg prime number theorem, Toeplitz matrix, tracial spectral law,
+moderate deviations, autocorrelation}
+\begin{document}
+\begin{abstract}
+We determine the growing-window tracial pressure of the actual
+prime-power translation operator attached to a fixed holomorphic
+cuspidal newform of trivial character. Every intermediate translation
+is killed at the interval boundary. If the interval has length $\ell$,
+the logarithmic tracial exponential at fixed coupling $s$ is
+$s^2\ell^2/12+O_{f,s}(\ell\sqrt{\log\ell})$, with a bounded lower
+error. The corresponding logarithmic Weil operator has Weyl
+coefficient $K_{f,\ell}$ satisfying
+$\log K_{f,\ell}=\ell^2/48+\log(2\ell/\sqrt N)
++O_f(\ell\sqrt{\log\ell})$.
+A uniform coupling estimate gives the spectral large-deviation law
+at every diverging intermediate scale up to $\ell^2$.
+At the central scale $\ell$, the arithmetic trace converges to the
+$\sqrt a$ variance-profile Toeplitz law, whose second and fourth
+moments are $1/3$ and $4/15$. We determine its logarithmic tail
+coefficient, equal to $-3$ in both directions. A sharp weighted
+autocorrelation identity explains the pressure constant. We prove
+global $L^2$ stability modulo affine phase, with optimal square-root
+exponent and sharp small-deficit squared-distance coefficient $6$.
+An explicit taper family preserves total leading prime variance
+while changing the boundary pressure. Higher prime powers and ramification change
+the logarithmic pressure by a bounded amount, without being small
+in operator norm. Fixed tuples of inequivalent forms give an
+orthogonally invariant, noncommuting colored limit. The proofs
+retain boundary survival through a uniform finite-grid comparison;
+fixed-moment convergence alone is not used to exchange the window
+and coupling limits.
+\end{abstract}
+
+\maketitle
+\tableofcontents
+
+\section{Introduction}\label{sec:introduction}
+
+For an operator whose principal growth is logarithmic in frequency,
+a bounded perturbation can change the leading Weyl coefficient.
+The coefficient records an exponential statistic of the perturbation,
+not merely its average. When the perturbation is a sum of translations
+on an interval, the relevant average also remembers the boundary:
+a path contributes only if every one of its intermediate vertices
+remains inside the interval. Arithmetic translations make this
+geometry particularly rigid. Their lengths are logarithms of prime
+powers, and unique factorization determines exactly which words can
+return to their starting point.
+
+This paper studies that coefficient as the interval grows. The
+translation alphabet then grows exponentially, its entries have
+arithmetic signs, and a fixed-alphabet Weyl formula does not estimate
+the resulting coefficient. Our main result is a sharp pressure law
+for this growing arithmetic operator. A second result identifies its
+central tracial distribution with a known variance-profile Toeplitz
+law and determines the sharp logarithmic tails of that law. These
+are two different limiting questions. We give a uniform estimate
+which also fills the intermediate spectral scales.
+
+\subsection*{The arithmetic operator and the main estimates}
+
+Fix a primitive holomorphic cuspidal newform $f$ of even weight
+$2\kappa\ge2$, exact level $N$, and trivial character. We use its
+real, unitary-normalized Hecke coefficients. Write $\alpha_p,\beta_p$
+for its good local parameters, so
+$\alpha_p\beta_p=1$, $\abs{\alpha_p}=\abs{\beta_p}=1$, and
+$\lambda_f(p)=\alpha_p+\beta_p$.
+For $I_\ell=(0,\ell)$ let
+\[
+ (S_hu)(x)=\one_{I_\ell}(x-h)u(x-h),\qquad x\in I_\ell,
+\]
+where $u$ is extended by zero. In particular $S_h^*=S_{-h}$.
+The operator under study is the finite selfadjoint sum
+\begin{equation}\label{eq:W-intro}
+ W_{f,\ell}=\sum_{p^m<e^\ell}b_f(p^m)
+             (S_{m\log p}+S_{-m\log p}).
+\end{equation}
+At good primes,
+$b_f(p^m)=(\log p)p^{-m/2}(\alpha_p^m+\beta_p^m)$;
+the actual ramified coefficients are specified in
+Section~\ref{sec:objects}. These are logarithmic-derivative
+coefficients, not the ordinary Hecke coefficients at $p^m$.
+
+The translation algebra has a normalized positive trace $\tau_\ell$.
+It is not the Hilbert-space trace. If a word has successive
+displacements $a_0=0,a_1,\ldots,a_r$, its trace is
+\begin{equation}\label{eq:word-intro}
+ \one_{\{a_r=0\}}
+ \left(1-\frac{\max_j a_j-\min_j a_j}{\ell}\right)_+.
+\end{equation}
+We construct this trace on the actual operators below. Put
+\[
+ P_{f,\ell}(s)=\log\tau_\ell(e^{sW_{f,\ell}}).
+\]
+Our uniform estimate is the following precisely quantified assertion:
+for each fixed $f$ and $C>0$, there are constants $A_{f,C}$ and
+$\ell_0(f,C)$ such that, whenever $\ell\ge\ell_0(f,C)$ and
+$2\le\abs t\le C\ell$,
+\begin{equation}\label{eq:uniform-main}
+ \frac{t^2}{12}-A_{f,C}
+ \le P_{f,\ell}(t/\ell)
+ \le\frac{t^2}{12}
+        +A_{f,C}\bigl(1+\abs t\sqrt{\log(2+\abs t)}\bigr).
+\end{equation}
+The form and $C$ are fixed; the estimate is uniform in the displayed
+range of $t$ and $\ell$. There is no assertion of a threshold uniform
+over varying levels or weights. In particular, for every fixed real $s$,
+\begin{equation}\label{eq:pressure-main}
+ \lim_{\ell\to\infty}\ell^{-2}P_{f,\ell}(s)=\frac{s^2}{12}.
+\end{equation}
+For $s\ne0$ its lower error is bounded and its upper error is
+$O_{f,s}(\ell\sqrt{\log(2+\ell)})$; $s=0$ is exact.
+
+The exterior-zero logarithmic Weil operator associated with this
+normalization has fixed-window counting function
+$N_{f,\ell}(E)\sim K_{f,\ell}e^{E/2}$, where
+\begin{equation}\label{eq:K-intro}
+ K_{f,\ell}=\frac{2\ell}{\sqrt N}\tau_\ell(e^{W_{f,\ell}/2}).
+\end{equation}
+We recall the fixed-window input and verify its normalization in
+Section~\ref{sec:objects}. Thus
+\begin{equation}\label{eq:K-main}
+ \begin{split}
+ \frac{\ell^2}{48}+\log\frac{2\ell}{\sqrt N}-O_f(1)
+ &\le\log K_{f,\ell}\le
+ \frac{\ell^2}{48}+\log\frac{2\ell}{\sqrt N}
+       +O_f(\ell\sqrt{\log(2+\ell)}).
+ \end{split}
+\end{equation}
+The high-energy limit defining $K_{f,\ell}$ is taken first, at a
+fixed window. The subsequent limit in~\eqref{eq:K-main} does not
+give a window-uniform onset for the counting asymptotic.
+
+\subsection*{Central, intermediate, and exponentially weighted scales}
+
+The probability spectral laws of $W_{f,\ell}/\ell$ in $\tau_\ell$
+converge, with all moments and all real exponential moments, to one
+symmetric measure $\nu$, independent of $f$. It is the expected
+limiting spectral law of the Hermitian Gaussian Toeplitz matrices
+\begin{equation}\label{eq:toeplitz-intro}
+ T_n=\sum_{j=1}^{n-1}\frac{\sqrt j}{n}
+       (z_jS_j+\overline z_jS_j^*),
+ \qquad \E\abs{z_j}^2=1,\quad \E z_j^2=0,
+\end{equation}
+where the $z_j$ are independent circular Gaussians and the shifts
+act on $\C^n$. Its first nonzero moments and sharp tail rates are
+\begin{equation}\label{eq:central-intro}
+ \int x^2\dd\nu=\frac13,\qquad
+ \int x^4\dd\nu=\frac4{15},\qquad
+ \lim_{R\to\infty}\frac{\log\nu([R,\infty))}{R^2}
+ =\lim_{R\to\infty}\frac{\log\nu(( -\infty,-R])}{R^2}=-3.
+\end{equation}
+This is not a Gaussian distribution: a Gaussian of variance $1/3$
+has fourth moment $1/3$.
+
+Between this central scale and the scale $\ell^2$, choose any positive
+$r_\ell\to\infty$ with $r_\ell=O(\ell)$. The spectral laws of
+$W_{f,\ell}/(\ell r_\ell)$ satisfy a large-deviation principle with
+speed $r_\ell^2$ and rate $3x^2$. No lower rate of divergence for
+$r_\ell$ is imposed. At the endpoint $r_\ell=\ell$ this determines
+the rare tracial spectral mass carrying the Weyl coefficient.
+For the central limiting measure, a separate positive-word comparison
+proves
+\begin{equation}\label{eq:central-mgf-intro}
+ \frac{s^2}{12}\le
+ \log\int e^{sx}\dd\nu(x)
+ \le\frac{s^2}{12}+O\bigl(\abs s\sqrt{\log(2+\abs s)}\bigr)
+ \quad (\abs s\to\infty).
+\end{equation}
+This last statement is not obtained by interchanging a fixed-moment
+limit with a growing coupling.
+
+There is a useful robustness statement beyond the untapered operator.
+For $g_\varepsilon(a)=\sqrt{1+\varepsilon\cos(2\pi a)}$,
+with $-9/20\le\varepsilon\le24/(4\pi^2-3)$, multiply each
+coefficient at $p^m$ by $g_\varepsilon(m\log p/\ell)$.
+The total leading first-prime variance remains $\ell^2/2$,
+but the pressure constant becomes $1/12-\varepsilon/(4\pi^2)$.
+Section~\ref{sec:tapers} derives this from a general boundary-profile
+criterion. This is an explicitly defined deformation, not an
+alternative formula for the untapered Weil operator.
+
+\subsection*{Why the boundary changes the constant}
+
+If every surviving fraction in~\eqref{eq:word-intro} were replaced by
+one, primewise balance would give an independent-circle product with
+logarithm $s^2\ell^2/2+O_{f,s}(1)$. The boundary reduces its leading
+coefficient from $1/2$ to $1/12$. The reduction is determined by the
+weighted autocorrelation problem
+\begin{equation}\label{eq:variational-intro}
+ \sup_{\norm u_{L^2(0,1)}=1}
+ \int_0^1 a\left|\int_0^{1-a}\overline{u(x)}u(x+a)\dd x\right|^2
+ \dd a=\frac1{12}.
+\end{equation}
+We give an exact nonnegative deficit identity and show that the
+maximizers are precisely the flat-modulus linear-phase profiles.
+More strongly, if $D(u)=1/12-J(u)$ for a unit profile and $d(u)$
+is its $L^2$ distance to that family, then
+\begin{equation}\label{eq:stability-intro}
+ d(u)^2\le C D(u),\qquad
+ d(u)^2\le6D(u)+O(D(u)^{3/2})\quad\text{as }D(u)\downarrow0.
+\end{equation}
+The global constant is absolute but not numerically specified;
+the local coefficient $6$ is optimal. The proof combines weak
+quartic splitting modulo modulation with an explicit transverse
+Hessian calculation. It requires more than the weak modulus
+control visible in the deficit identity alone.
+A separate finite-dimensional deficit identity controls the
+variance of every vector of the Gaussian comparison matrix,
+not just a proposed test vector.
+
+Two further distinctions are essential. First, powers of one prime
+share one phase: they are not independent random coefficients.
+Their complete contribution can nevertheless be restored at bounded
+logarithmic cost by a relative tracial Taylor estimate. Second,
+rounding translation lengths can create false returns. We keep an
+independent phase for each prime while rounding, so that these aliases
+are removed exactly, and enlarge the interval to dominate every
+survival mask multiplicatively. An additive error in each word would
+not suffice at exponential scale.
+
+\subsection*{Relation to prior work and scope of the contribution}
+
+Laptev and Weth~\cite{LW} treat the exterior-zero logarithmic
+Laplacian; the bounded translation-algebra extension used
+in~\eqref{eq:K-intro} is established in~\cite{ChandruW}.
+Here the new problem is the growth of its actual arithmetic
+coefficient as the window and alphabet grow. The arithmetic interval
+operator and its critical heat residue also appear in~\cite{ChandruB}.
+Our proof uses
+Deligne's local bound~\cite{Deligne} and the fixed-form
+Rankin--Selberg prime number theorem in the form of
+Gillespie and Ji~\cite{GJ}.
+
+Bryc, Dembo and Jiang~\cite{BDJ} obtain the classical scalar law,
+and Bose, Saha and Sen~\cite{BSS} explicitly allow variance profiles.
+Their theorem contains the scalar law in~\eqref{eq:toeplitz-intro}
+as the profile $\sigma(a)=\sqrt a$. Colored pairing limits and the
+failure of asymptotic freeness for Toeplitz matrices are already
+studied by Bose, Hazra and Saha~\cite{BHS}. We prove the occurrence
+of these structures in the original arithmetic translation trace,
+including every local factor, and give the profile-specific pressure
+and tail calculation. 
+
+The unweighted problem of Garsia, Rodemich and Rumsey~\cite{GRR}
+appears in the Toeplitz norm analysis of Sen and Vir\'ag~\cite{SV};
+Onatski~\cite{Onatski} studies related rectangular geometries.
+Manov~\cite{Manov} treats weighted linear functionals on positive
+definite functions. Our quadratic functional retains both the lag
+weight and the square-autocorrelation constraint. The direct linear
+relaxation does not give its sharp constant, as explained in
+Section~\ref{sec:profile}. 
+
+The Gaussian tools are standard concentration and matrix-series
+estimates~\cite{Gross,Ledoux,Tropp}. The specific analytic work is a
+uniform comparison that retains killed paths, controls the actual
+prime variances in moving bins, and permits a growing exponential
+coupling. The large-deviation conclusions are consequences of that
+pressure estimate by exponential tilting, whose proof is included.
+All statements are unconditional for the fixed holomorphic forms
+specified above, including forms with complex multiplication.
+
+\section{The interval trace and the Weyl coefficient}\label{sec:objects}
+
+\subsection*{A trace on the concrete translation algebra}
+
+Let $\mathcal A_\ell$ be the unital norm-closed algebra on
+$L^2(I_\ell)$ generated by the $S_h$ and bounded multiplication
+operators. Products before closure have the form
+$M_gS_h$ with the appropriate overlap indicators absorbed in $g$.
+The definition does not require a unique representation as a finite sum.
+For $v_t(x)=\ell^{-1/2}e^{\ii tx}$ define on finite sums
+\begin{equation}\label{eq:trace-construction}
+ \tau_\ell(B)=\lim_{R\to\infty}\frac1{2R}
+                 \int_{-R}^R\ip{v_t}{Bv_t}\dd t.
+\end{equation}
+The inner product is conjugate-linear in its first argument.
+For a monomial the integrand is $e^{-\ii th}$ times its surviving
+coefficient integral divided by $\ell$. Thus the limit is zero
+if $h\ne0$, and is $\ell^{-1}\int g$ if $h=0$.
+Each approximating functional is positive, unital, and contractive.
+The limit therefore extends continuously to $\mathcal A_\ell$.
+For two monomials the traces of their products vanish unless the
+net displacement is zero; in that case a translation of the
+integration variable proves cyclicity. Linearity and continuity
+give a tracial state on the full algebra.
+
+If $a_j=h_1+\cdots+h_j$, then
+$S_{h_1}\cdots S_{h_r}$ acts at $x$ only when all $x-a_j$ lie in
+$I_\ell$. For a closed word this set of starting positions has
+length $(\ell-\max a_j+\min a_j)_+$. This proves
+\eqref{eq:word-intro}. The formula keeps the boundary at each
+step; it is generally false that $S_hS_k=S_{h+k}$.
+
+For a bounded selfadjoint $B\in\mathcal A_\ell$, the restriction of
+$\tau_\ell$ to its continuous functional calculus determines a
+probability measure. We use that measure to interpret spectral
+indicators. Equivalently one may pass to the finite von Neumann
+algebra of the tracial GNS representation, after dividing out the
+trace-null ideal. Its normal trace defines $\tau_\ell(\one_E(B))$
+for every Borel set $E$. No trace on all of
+$\mathcal B(L^2(I_\ell))$ is asserted.
+
+\subsection*{Actual local factors}
+
+At $p\nmid N$ let the unitary Euler factor be
+$((1-\alpha_pp^{-s})(1-\beta_pp^{-s}))^{-1}$.
+If $p\Vert N$, it is $(1-\epsilon_pp^{-s-1/2})^{-1}$ with
+$\epsilon_p\in\{1,-1\}$; for trivial character it has degree
+zero when $p^2\mid N$; these are the classical newform local
+factors~\cite{AL}. Consequently
+\begin{equation}\label{eq:local-coefficients}
+ b_f(p^m)=
+ \begin{cases}
+  (\log p)p^{-m/2}(\alpha_p^m+\beta_p^m),&p\nmid N,\\
+  \epsilon_p^m(\log p)p^{-m},&p\Vert N,\\
+  0,&p^2\mid N.
+ \end{cases}
+\end{equation}
+The operator~\eqref{eq:W-intro} is bounded at each fixed $\ell$
+because it is a finite sum. Terms with $p^m=e^\ell$ vanish as
+operators, so either endpoint convention gives the same $W_{f,\ell}$.
+We write $W_{f,\ell}^{(1)}$ for its good first-prime part and put
+\begin{equation}\label{eq:first-coeff}
+ b_p=\lambda_f(p)\frac{\log p}{\sqrt p},\qquad h_p=\log p,
+ \qquad W^{(1)}=\sum_{p\nmid N,\ h_p<\ell}b_p(S_{h_p}+S_{-h_p}).
+\end{equation}
+In expressions involving $b_p$, unqualified prime sums run
+over primes good for $f$.
+
+\subsection*{The fixed-window input and its normalization}
+
+Use $\widehat{u^0}(\xi)=\int_\R e^{-\ii x\xi}u^0(x)\dd x$.
+The exterior-zero logarithmic operator $H_{I_\ell}$ is defined by
+the closed semibounded form with symbol $\log\abs\xi$ and
+Fourier factor $(2\pi)^{-1}$. Its negative part is bounded because
+$\abs{\widehat{u^0}(\xi)}\le\sqrt\ell\norm u_2$ and
+$\log\abs\xi$ is integrable near zero. Its form domain is the
+space of supported $L^2$ functions with finite positive logarithmic
+Fourier energy. This is not the spectral logarithm of a Dirichlet
+Laplacian.
+
+The fixed-window result we use from~\cite{ChandruW}, in one
+dimension, states that for $d>0$, $c\in\R$, bounded selfadjoint
+$B\in\mathcal A_\ell$, and compact selfadjoint $R$,
+\begin{equation}\label{eq:fixed-weyl}
+ N_{dH_{I_\ell}+c+B+R}(E)
+ \sim\frac\ell\pi e^{-c/d}\tau_\ell(e^{-B/d})e^{E/d}
+ \qquad(E\to\infty).
+\end{equation}
+All the data in this statement are fixed while $E$ tends to
+infinity. This external fixed-window input, like the arithmetic
+prime number theorem used below, is separated from the new
+growing-window estimate.
+
+Let $\psi=\Gamma'/\Gamma$. Define $A_{f,\ell}$ on the same
+logarithmic form domain by the Fourier symbol
+\[
+ \log N-2\log(2\pi)+2\Re\psi(\kappa+\ii\xi)
+\]
+and the bounded perturbation $-W_{f,\ell}$. Since
+\[
+ r_\kappa(\xi)=2\Re\psi(\kappa+\ii\xi)-2\log\abs\xi
+       \in L^1(\R),
+\]
+its compressed multiplier $R_{\kappa,\ell}$ is trace class.
+Indeed, factor it as $T^*M_{\operatorname{sgn}r_\kappa}T$,
+where $Tu=(2\pi)^{-1/2}\abs{r_\kappa}^{1/2}\widehat{u^0}$;
+then $\norm T_{\mathrm{HS}}^2=\ell\norm{r_\kappa}_1/(2\pi)$.
+The integrability follows from the digamma asymptotic at infinity
+and the integrable logarithm at zero~\cite{DLMF}. Thus, as an
+identity of closed forms and their operators,
+\begin{equation}\label{eq:gamma-identity}
+ A_{f,\ell}=2H_{I_\ell}
+       +\bigl(\log N-2\log(2\pi)\bigr)I
+       -W_{f,\ell}+R_{\kappa,\ell}.
+\end{equation}
+Using $d=2$ in~\eqref{eq:fixed-weyl} gives exactly
+\eqref{eq:K-intro}. No uniform bound on
+$\norm{R_{\kappa,\ell}}_1$ as the window grows is needed for
+this fixed-window identification.
+
+\section{Arithmetic variance and bounded local restoration}\label{sec:arithmetic}
+
+\subsection*{The quantitative prime input}
+
+For our fixed form the Rankin--Selberg prime number theorem gives
+\begin{equation}\label{eq:RS}
+ A_f(X):=\sum_{\substack{p\le X\\p\nmid N}}
+              \lambda_f(p)^2\log p
+       =X+O_f\bigl(Xe^{-c_f\sqrt{\log X}}\bigr),\qquad c_f>0.
+\end{equation}
+One may use~\cite[Lemma 3.2]{GJ} over $\mathbb Q$. The representation
+is self-contragredient. That statement first includes prime powers;
+Deligne's bound removes their good contribution with
+$O(\sqrt X\log^2(2X))$ error, and the finitely many bad primes
+are harmless at fixed $f$. Decreasing $c_f$ absorbs both errors.
+No conjectural prime-splitting assertion is needed.
+
+Partial summation with $(\log X)/X$ gives
+\begin{equation}\label{eq:variance}
+ V_f(H):=\sum_{\substack{h_p<H\\p\nmid N}}b_p^2
+       =\frac{H^2}{2}+O_f(1),\qquad H\ge0.
+\end{equation}
+The bounded error, rather than just $o(H^2)$, follows because
+$(1+H)e^{-c_f\sqrt H}$ is integrable on the positive half-line.
+Endpoint atoms are covered by $b_p^2\le4(\log p)^2/p$.
+The same calculation on a logarithmic interval $[H,H+\Delta)$,
+with $0\le H<H+\Delta\le\ell$, gives the conservative bound
+\begin{equation}\label{eq:bin}
+ \sum_{H\le h_p<H+\Delta}b_p^2
+ =\int_H^{H+\Delta}v\dd v
+   +O_f\bigl((\ell+1)^2e^{-c_f\sqrt H}\bigr),
+\end{equation}
+after decreasing $c_f$ if necessary and treating the finite initial
+interval by its constant. This form is valid even when $\Delta>1$.
+It follows by applying Stieltjes partial summation at the two
+endpoints and integrating the error over the interval; the bound
+$(\ell+1)(1+\Delta)\le(\ell+1)^2$ suffices.
+
+Two further consequences used repeatedly are
+\begin{equation}\label{eq:variance-measure}
+ \ell^{-2}\sum_{h_p<\ell}b_p^2\delta_{h_p/\ell}
+       \Longrightarrow a\dd a\quad\hbox{on }[0,1],
+ \qquad \sum_p b_p^4<\infty.
+\end{equation}
+The fourth-power sum has an absolute majorant independent of $f$;
+also $\abs{b_p}\le2(\log p)/\sqrt p\le4/e$.
+
+\subsection*{A relative tracial Taylor estimate}
+
+We record the noncommutative estimate that will justify changing
+local variables without paying the exponentially large size of
+their background. In a unital $C^*$-algebra with positive normalized
+trace $\tau$, let $H,Z$ be bounded selfadjoint elements. Duhamel's
+ordered-simplex formula and tracial H\"older give
+\begin{equation}\label{eq:duhamel-bound}
+ \left|\frac{\mathrm d^r}{\mathrm dt^r}
+          \tau(e^{H+tZ})\right|
+ \le\norm Z^r\tau(e^{H+tZ}).
+\end{equation}
+The formula follows in the finite tracial von Neumann completion:
+each product of exponential factors has H\"older exponents whose
+reciprocals sum to one; the derivative factorial cancels the
+simplex volume. The same argument for the first derivative gives
+\[
+ \tau(e^{H+tZ})\le e^{\abs t\norm Z}\tau(e^H).
+\]
+Here monotonicity is a statement about the traced exponential,
+not operator monotonicity of the exponential map. Taylor's
+remainder after degree $r-1$ is consequently bounded by
+$\norm Z^r e^{\norm Z}\tau(e^H)/r!$.
+
+Let $z$ be uniform on the circle, let $S_m$ be contractions, and
+let $(b_m)$ be a finite real string indexed by positive integers. Put
+\[
+ X(z)=\sum_m b_m(z^mS_m+(\overline z)^mS_m^*),
+ \qquad c=\sum_m\abs{b_m}\le4.
+\]
+Let $Y$ retain the first harmonic, or be zero. If
+$d=\sum_{m\text{ omitted}}b_m^2$, the linear expectations vanish,
+and unequal harmonics are orthogonal in the quadratic term.
+For the remaining terms set
+\[
+ B_H(S)=\int_0^1\tau(e^{(1-v)H}S e^{vH}S^*)\dd v.
+\]
+Positivity and H\"older give $0\le B_H(S)\le\tau(e^H)$.
+The two opposite orientations cancel the Taylor factor $1/2$;
+their integrals agree by cyclicity. Thus the difference of the
+quadratic expectations is exactly
+$s^2\sum_{m\text{ omitted}}b_m^2B_H(S_m)$.
+Charging the two cubic remainders yields, for real $s$,
+\begin{equation}\label{eq:local-relative}
+ \left|\E\tau(e^{H+sX})-\E\tau(e^{H+sY})\right|
+ \le\left(s^2d+\frac83\abs s^3e^{8\abs s}c^3\right)\tau(e^H).
+\end{equation}
+Both expectations are at least $\tau(e^H)$ by convexity and
+centering. Therefore this is a relative estimate in both directions,
+uniform in the background $H$.
+
+\subsection*{Every prime power, with its correct phase}
+
+Give each prime an independent circle variable $z_p$, and replace
+its local string by
+\[
+ X_p(z_p)=\sum_{m\log p<\ell}b_f(p^m)
+       (z_p^mS_{m\log p}+(\overline{z_p})^mS_{-m\log p}).
+\]
+Unique factorization says that zero total displacement is equivalent
+to zero signed exponent at each prime. The trace of every other
+word is zero. The norm-convergent exponential series at fixed
+$\ell$ therefore gives the exact identity
+\begin{equation}\label{eq:phase-identity}
+ \E\tau_\ell\left(e^{s\sum_pX_p(z_p)}\right)
+       =\tau_\ell(e^{sW_{f,\ell}}).
+\end{equation}
+All harmonics at $p$ use the same $z_p$. Higher-order resonances
+among these harmonics are retained, not assumed to vanish.
+
+For good $p$ retain its first harmonic; for bad $p$ retain zero.
+The local budgets satisfy
+\begin{align}
+ c_p&\le\frac{2\log p}{\sqrt p-1}\le4,
+ &\sum_pc_p^3&\le C_*:=8\sum_p\frac{(\log p)^3}{(\sqrt p-1)^3}<\infty,
+ \label{eq:c-budget}\\
+ \sum_pd_p&\le D_*:=4\sum_p\frac{(\log p)^2}{p(p-1)}<\infty.
+ \label{eq:d-budget}
+\end{align}
+At a bad prime its full squared mass is at most
+$(\log p)^2/(p^2-1)$, so~\eqref{eq:d-budget} holds uniformly
+even as the ramified set varies. Conditioning on all other primes
+in~\eqref{eq:local-relative} and replacing one local string at a
+time proves
+\begin{equation}\label{eq:full-local-bound}
+ \left|P_{f,\ell}(s)-\log\tau_\ell(e^{sW^{(1)}})\right|
+ \le s^2D_*+\frac83\abs s^3e^{8\abs s}C_*.
+\end{equation}
+This is bounded independently of $f$ and $\ell$ at bounded $s$,
+and tends to zero at $s=t/\ell$ for fixed $t$.
+It is not a bound for $\norm{W-W^{(1)}}$.
+
+\section{The weighted autocorrelation identity}\label{sec:profile}
+
+For $u\in L^2(0,1)$ with $\norm u_2=1$ put
+\[
+ F(x)=\abs{u(x)}^2,\qquad
+ c_u(a)=\int_0^{1-a}\overline{u(x)}u(x+a)\dd x,
+ \qquad J(u)=\int_0^1a\abs{c_u(a)}^2\dd a.
+\]
+Let $\widehat F(n)=\int_0^1F(x)e^{-2\pi\ii nx}\dd x$.
+We will use the exact identity
+\begin{align}\label{eq:continuous-deficit}
+ \frac1{12}-J(u)
+ &=\frac1{2\pi^2}\sum_{n\ge1}\frac{\abs{\widehat F(n)}^2}{n^2}
+ \notag\\
+ &\quad+\frac12\int_0^1a\int_0^{1-a}\int_0^{1-a}
+  \left|\overline{u(x)}u(x+a)-\overline{u(y)}u(y+a)\right|^2
+             \dd x\dd y\dd a.
+\end{align}
+Both terms on the right are nonnegative.
+
+To derive it, write $g_a(x)=\overline{u(x)}u(x+a)$. The elementary
+variance identity on an interval of length $1-a$ is
+\[
+ (1-a)\int\abs{g_a}^2-\left|\int g_a\right|^2
+   =\frac12\iint\abs{g_a(x)-g_a(y)}^2\dd x\dd y.
+\]
+The required integrations are legitimate without assuming $u\in L^4$.
+Indeed Tonelli gives
+\[
+ \int_0^1a(1-a)\int_0^{1-a}F(x)F(x+a)\dd x\dd a
+ =\frac12\int_0^1\int_0^1
+   \abs{x-y}(1-\abs{x-y})F(x)F(y)\dd x\dd y<\infty.
+\]
+The periodic Bernoulli identity
+\[
+ v(1-v)=\frac16-\frac1{\pi^2}
+                  \sum_{n\ge1}\frac{\cos(2\pi nv)}{n^2},
+ \qquad 0\le v\le1,
+\]
+converges absolutely and uniformly. Integrating it against
+$F(x)F(y)$ evaluates the preceding expression as
+$1/12-(2\pi^2)^{-1}\sum_{n\ge1}\abs{\widehat F(n)}^2/n^2$.
+Subtracting $J(u)$ proves~\eqref{eq:continuous-deficit}.
+
+\subsection*{Equality and what the deficit actually controls}
+
+Equality first forces $\widehat F(n)=0$ for $n\ne0$, hence
+$F=1$ almost everywhere by Fourier uniqueness in $L^1$.
+The second term then gives, for almost every $a$,
+\[
+ \overline{u(x)}u(x+a)=\chi(a)\quad\text{for almost every }x\in(0,1-a),
+ \qquad\abs{\chi(a)}=1.
+\]
+The zero-extended $L^2$ autocorrelation is continuous, so
+$\chi(a)=c_u(a)/(1-a)$ is continuous on $[0,1)$.
+Continuity of translations in $L^2$ extends the increment identity
+to every admissible $a$ on compact interior intervals.
+Composing two increments gives
+$\chi(a+b)=\chi(a)\chi(b)$ for $a,b\ge0$, $a+b<1$.
+A continuous local circle character is $e^{\ii\omega a}$:
+choose a continuous argument near zero, apply the additive law
+there, and subdivide an arbitrary $a$ into small equal increments.
+It follows that $e^{-\ii\omega x}u(x)$ has zero distributional
+derivative in $(0,1)$ and is constant almost everywhere. Thus
+\begin{equation}\label{eq:profile-equality}
+ J(u)=\frac1{12}\quad\Longleftrightarrow\quad
+ u(x)=e^{\ii\theta+\ii\omega x}\ \text{a.e.},\qquad \theta,\omega\in\R.
+\end{equation}
+If $J(u)\ge1/12-\varepsilon$, the first deficit is at most
+$\varepsilon$, giving
+$\sum_{n\ge1}\abs{\widehat F(n)}^2/n^2\le2\pi^2\varepsilon$.
+This directly controls a negative-Sobolev measure of the squared
+modulus. A stronger conclusion requires the following additional
+compactness and local-coercivity arguments.
+
+\subsection*{Strong stability modulo affine phase}
+
+For arbitrary $u\in L^2(0,1)$ write
+$D(u)=\norm u_2^4/12-J(u)\ge0$, and for unit $u$ let
+\[
+ \mathcal E=\{e^{\ii\theta+\ii\omega x}:\theta,\omega\in\R\},
+ \qquad d(u)=\inf_{e\in\mathcal E}\norm{u-e}_2.
+\]
+The functional $J$ is a continuous real quartic polynomial on
+the complex Hilbert space viewed as a real space. This follows
+from $\abs{c_u(a)}\le\norm u_2^2$ and polarization.
+Modulation and constant phase preserve $D$ and $d$.
+
+Compactness modulo symmetries followed by transverse second
+variation is a standard strategy in stability theory for sharp
+Fourier inequalities; see, for example, Christ~\cite{Christ}.
+Here a compact correlation splitting and explicit primitive
+identities give a direct proof for this weighted functional.
+
+We first show that $D(u_n)\to0$ for unit $u_n$ forces
+$d(u_n)\to0$. The essential weak-splitting fact is
+\begin{equation}\label{eq:weak-splitting}
+ u_n\rightharpoonup u,\quad r_n=u_n-u
+ \quad\Longrightarrow\quad J(u_n)=J(u)+J(r_n)+o(1).
+\end{equation}
+In the correlation expansion, each mixed term is a compact
+linear or antilinear map of $r_n$ from $L^2_x$ to $L^2_a$.
+For example its kernel is
+$\overline{u(y-a)}\one_{\{0<a<y<1\}}$, of squared
+Hilbert--Schmidt norm
+$\int_0^1(1-x)\abs{u(x)}^2\dd x\le\norm u_2^2$.
+These terms tend strongly to zero. The remaining cross term is
+\[
+ \int_{0<x<y<1}(y-x)c_u(y-x)
+                         r_n(x)\overline{r_n(y)}\dd x\dd y.
+\]
+Its kernel is bounded, hence Hilbert--Schmidt, so it also tends
+to zero. This proves~\eqref{eq:weak-splitting}; it does not
+assume the self-correlation of a weak-null sequence tends to zero.
+
+Plancherel for the zero-extended profile gives
+\[
+ J(u_n)\le\frac12\int_\R\abs{c_{u_n}(a)}^2\dd a
+   =\frac1{4\pi}\int_\R\abs{\widehat{u_n}(\xi)}^4\dd\xi
+   \le\frac12\norm{\widehat{u_n}}_\infty^2.
+\]
+Thus a near-maximizing sequence can be modulated and rotated so
+that its mean is real and bounded below by a positive constant.
+A weakly convergent subsequence then has a nonzero limit $u$.
+If $\alpha=\norm u_2^2$, weak orthogonality gives
+$\norm{r_n}_2^2\to1-\alpha$. By~\eqref{eq:weak-splitting}
+and the homogeneous sharp inequality,
+\[
+ \frac1{12}\le\frac{\alpha^2+(1-\alpha)^2}{12}.
+\]
+Since $0<\alpha\le1$, necessarily $\alpha=1$. The convergence
+is strong, and its limit belongs to $\mathcal E$ by
+\eqref{eq:profile-equality}. This proves the claimed compactness
+modulo modulation.
+
+The local estimate has an explicit sharp quadratic constant.
+Write $h=a+\ii b$ with $a,b$ real, $\mu=\int_0^1a$, and put
+\[
+ L_h(r)=\int_0^{1-r}\bigl(\overline{h(x)}+h(x+r)\bigr)\dd x.
+\]
+Exact expansion at the flat profile gives
+\begin{equation}\label{eq:stability-expansion}
+ D(1+h)=Q(h)+C_3(h)+D(h),\qquad
+ \abs{C_3(h)}\le\frac73\norm h_2^3,
+\end{equation}
+where
+\begin{align}\label{eq:Q-explicit}
+ Q(h)&=\frac{\norm h_2^2}{6}+\frac{\mu^2}{3}
+    -\int_0^1r\abs{L_h(r)}^2\dd r
+    -2\int_0^1r(1-r)\Re c_h(r)\dd r,\notag\\
+ C_3(h)&=\frac{\mu\norm h_2^2}{3}
+    -2\Re\int_0^1rL_h(r)\overline{c_h(r)}\dd r.
+\end{align}
+The remainder bound follows from
+$\abs{L_h(r)}\le2\norm h_2$ and
+$\abs{c_h(r)}\le\norm h_2^2$.
+Since $D\ge0$, $Q$ is nonnegative. Its zero directions contain
+$\mathcal K=\operatorname{span}_{\R}\{1,\ii,\ii x\}$ by
+scaling, phase, and modulation invariance. Positivity makes all
+bilinear cross terms with $\mathcal K$ vanish.
+
+In fact the transverse quadratic gap is exactly $1/6$.
+If $h=a+\ii b\perp\mathcal K$ in the real Hilbert inner
+product, then $\int a=\int b=\int xb=0$.
+Let $A(x)=\int_0^xa$ and $B(x)=\int_0^xb$.
+Use subscripts ${\rm e},{\rm o}$ for even and odd parts under
+reflection $x\mapsto1-x$, and write $\overline A=\int_0^1A$.
+Both primitives vanish at the endpoints, and
+\[
+ \Re L_h(r)=A(1-r)-A(r)=-2A_{\rm o}(r),\qquad
+ \Im L_h(r)=-B(r)-B(1-r)=-2B_{\rm e}(r).
+\]
+For a real mean-zero function $v$ with primitive $V$, the same
+Bernoulli expansion used above gives
+\[
+ -2\int_0^1r(1-r)c_v(r)\dd r
+       =2\left(\norm V_2^2-\left|\int_0^1V\right|^2\right).
+\]
+This also follows from Parseval, since the nonzero Fourier
+coefficients of $V$ are those of $v$ divided by $2\pi\ii n$.
+The square of either reflection-parity component is symmetric,
+so its integral against $r$ is half its integral. Substitution
+in~\eqref{eq:Q-explicit}, using $\int B=-\int xb=0$, yields
+\begin{equation}\label{eq:hessian-gap}
+ Q(a)=\frac{\norm a_2^2}{6}
+                   +2\norm{A_{\rm e}-\overline A}_2^2,
+ \qquad
+ Q(\ii b)=\frac{\norm b_2^2}{6}+2\norm{B_{\rm o}}_2^2.
+\end{equation}
+There are no real-imaginary cross terms. Hence
+$Q(h)\ge\norm h_2^2/6$ on $\mathcal K^\perp$, with equality
+for $h(x)=\cos(2\pi x)$.
+
+For a unit $u$, a nearest affine phase exists because
+\[
+ d(u)^2=2-2\max_{\omega\in\R}
+                 \left|\int_0^1u(x)e^{-\ii\omega x}\dd x\right|,
+\]
+and the Fourier transform is continuous, nonzero, and vanishes
+at infinity. Align that nearest phase with $1$ and set $h=u-1$,
+$\delta=\norm h_2=d(u)$. Differentiating the maximizing phase
+and frequency gives $\Im\int h=\Im\int xh=0$; the derivatives
+exist since $xu\in L^1$. Normalization gives
+$\Re\int h=-\delta^2/2$. Thus
+$\norm{P_{\mathcal K}h}_2^2=\delta^4/4$, and
+\eqref{eq:stability-expansion}--\eqref{eq:hessian-gap} imply
+\begin{equation}\label{eq:local-stability}
+ D(u)\ge\delta^2\left(\frac16-\frac73\delta
+                                        -\frac{\delta^2}{24}\right).
+\end{equation}
+For $\delta\le1/32$ this is at least $\delta^2/12$.
+By the compactness already proved, the infimum of $D(u)$ over
+unit profiles with $d(u)\ge1/32$ is some $\eta_0>0$.
+Since $d(u)^2\le2$, the remaining profiles satisfy
+$d(u)^2\le2D(u)/\eta_0$. This proves the global bound
+in~\eqref{eq:stability-intro}, with an absolute but nonexplicit
+constant $\max(12,2/\eta_0)$.
+
+As $D(u)\downarrow0$, compactness places $u$ in the local
+neighborhood, where $\delta^2\le12D(u)$.
+Equation~\eqref{eq:local-stability} then gives uniformly
+\begin{equation}\label{eq:sharp-stability}
+ d(u)^2\le6D(u)+O(D(u)^{3/2}).
+\end{equation}
+This coefficient cannot be reduced. For small real $t$ take
+$u_t=(1+t\cos(2\pi x))/\sqrt{1+t^2/2}$.
+Positivity and the triangle inequality make frequency zero
+maximize its Fourier modulus, so its nearest phase is $1$.
+Then $d(u_t)^2\sim t^2/2$, whereas
+\eqref{eq:stability-expansion} and~\eqref{eq:hessian-gap} give
+$D(u_t)\sim t^2/12$. Their ratio tends to $6$. In particular
+the square-root distance exponent is optimal. We make no
+claim that $6$ is the sharp global constant.
+
+\subsection*{The finite-dimensional identity}
+
+For a unit vector $v=(v_0,\ldots,v_{d-1})$ define
+$F_i=\abs{v_i}^2$,
+$c_j=\sum_{i=0}^{d-j-1}\overline{v_i}v_{i+j}$, and
+$\widehat F_d(k)=\sum_{i=0}^{d-1}F_i e^{-2\pi\ii ki/d}$.
+The cyclic kernel $K_d(r)=r(d-r)$ has normalized Fourier coefficients
+\[
+ \widehat K_d(0)=\frac{d^2-1}{6},\qquad
+ \widehat K_d(k)=-\frac1{2\sin^2(\pi k/d)},\quad 1\le k<d.
+\]
+For example these follow by applying the cyclic second difference:
+$K_d(r+1)-2K_d(r)+K_d(r-1)=-2+2d\one_{\{r=0\}}$.
+The same variance calculation on each overlap yields
+\begin{align}\label{eq:discrete-deficit}
+ \frac{d^2-1}{12}-\sum_{j=1}^{d-1}j\abs{c_j}^2
+ &=\frac14\sum_{k=1}^{d-1}
+       \frac{\abs{\widehat F_d(k)}^2}{\sin^2(\pi k/d)}\notag\\
+ &\quad+\frac12\sum_{j=1}^{d-1}j
+       \sum_{i,h=0}^{d-j-1}
+       \abs{\overline{v_i}v_{i+j}-\overline{v_h}v_{h+j}}^2.
+\end{align}
+Only the kernel on the moduli has been evaluated cyclically;
+$c_j$ is still the aperiodic, killed autocorrelation. In particular
+\begin{equation}\label{eq:discrete-bound}
+ \sum_{j=1}^{d-1}j\abs{c_j}^2\le\frac{d^2-1}{12}.
+\end{equation}
+For $d\ge2$, equality forces $F_i=1/d$, and equality at lag one
+forces all successive phase increments to agree. Its complete equality class
+is $v_i=d^{-1/2}e^{\ii\theta+\ii\omega i}$. The $d=1$ case is
+immediate.
+
+Equivalently, every nonnegative trigonometric polynomial $Q$ of
+degree at most $n$ and mean one satisfies
+\[
+ \sum_{k\in\mathbb Z}\abs k\abs{\widehat Q(k)}^2
+           \le\frac{n(n+2)}6.
+\]
+Fej\'er--Riesz factorization gives this formulation from
+\eqref{eq:discrete-bound}; its extremizers for $n\ge1$ are translated
+Fej\'er kernels. This is a useful equivalent description of the
+same inequality, not an additional independent extremal result.
+
+For comparison with a weighted linear positive-definite extremum,
+$\Lambda(a)=c_u(a)$ is positive definite and supported in $[-1,1]$,
+and $\abs\Lambda^2$ is positive definite as well. Enlarging the
+class of $\abs\Lambda^2$ to all normalized positive-definite
+functions loses the square constraint. That larger class contains
+$\phi(a)=(1-\abs a)_+$, for which
+$\int_{-1}^1\abs a\phi(a)\dd a=1/3$; our quadratic optimum is
+$\int_{-1}^1\abs a(1-\abs a)^2\dd a=1/6$.
+Thus the direct application of a linear weighted theorem such
+as~\cite{Manov} cannot give the constant in~\eqref{eq:variational-intro}.
+
+\section{Uniform pressure through a boundary-preserving grid}\label{sec:pressure}
+
+We prove~\eqref{eq:uniform-main}. Fix $C>0$ and take
+$2\le t\le C\ell$; negative $t$ will follow at the end.
+All sums in this section initially contain only good first primes.
+
+\subsection*{The flat lower bound}
+
+After prime-phase expectation the exponential operator is a
+multiplication operator: exactly the primewise balanced words
+survive, and every such word is multiplication by its full
+survival indicator. Its coefficients are nonnegative products of
+even powers of the real $b_p$. Taking the flat unit vector
+$v=\ell^{-1/2}\one_{I_\ell}$ and applying scalar Jensen to its
+spectral measure gives
+\begin{equation}\label{eq:bessel-lower}
+ \tau_\ell(e^{tW^{(1)}/\ell})
+ \ge\prod_{h_p<\ell}I_0\left(
+          \frac{2t b_p}{\ell}(1-h_p/\ell)\right),
+\end{equation}
+where $I_0(2x)=\sum_{r\ge0}x^{2r}/(r!)^2$.
+For bounded $\abs x$, $\log I_0(2x)=x^2+O(x^4)$.
+Using~\eqref{eq:variance} and integration by parts,
+\[
+ \sum_{h_p<\ell}b_p^2(1-h_p/\ell)^2
+   =\frac2\ell\int_0^\ell V_f(H)(1-H/\ell)\dd H
+   =\frac{\ell^2}{12}+O_f(1).
+\]
+The fourth-power remainder is $O_C(t^4/\ell^4)=O_C(1)$.
+This proves the lower side of~\eqref{eq:uniform-main} for
+$W^{(1)}$, with a bounded error throughout the stated range.
+
+\subsection*{Word truncation and rounding}
+
+Choose once and for all $D>0$ with $D\log2>4$, and set
+\begin{equation}\label{eq:mesh}
+ M=\lceil Dt^2\rceil,\quad q=\lceil t^6\rceil,\quad
+ d=q+2M,\quad j_p=\lfloor qh_p/\ell\rfloor.
+\end{equation}
+Here $0\le j_p<q$; the zero bin must be retained.
+On $\C^d$ use the killed integer shifts, with $S_0=I_d$, and
+give each prime its own independent circle phase, even when
+several primes have the same $j_p$. Put
+\[
+ B_z=\sum_{h_p<\ell}\frac{b_p}{\ell}
+                 (z_pS_{j_p}+\overline z_pS_{j_p}^*).
+\]
+A balanced word of length $r\le M$ has original rescaled range
+$R$ and integer-grid range $R_q$. Each partial sum moves by at
+most $r/q$, hence $\abs{R_q/q-R}\le2r/q$. It is exactly closed
+on both grids, and
+\begin{equation}\label{eq:mask-domination}
+ (1-R)_+\le\frac dq(1-R_q/d)_+.
+\end{equation}
+Indeed $d-R_q\ge q(1-R)+2(M-r)$. Unbalanced arithmetic words
+which close after rounding still vanish under the independent
+prime phases.
+
+The positive first-prime series has tail above degree $M$ at most
+\[
+ 2^{-M}\prod_p I_0(4tb_p/\ell)
+ \le\exp\{-M\log2+4t^2V_f(\ell)/\ell^2\}
+ \le e^{-t^2}
+\]
+for all sufficiently large $\ell$, uniformly in $2\le t\le C\ell$.
+We used $I_0(2x)\le e^{x^2}$ and
+$V_f(\ell)/\ell^2\to1/2$. Consequently
+\begin{equation}\label{eq:grid-comparison}
+ \tau_\ell(e^{tW^{(1)}/\ell})
+       \le\frac dq\E_z\tr_d(e^{tB_z})+e^{-t^2},
+ \qquad \tr_d=\Tr/d.
+\end{equation}
+This multiplicative comparison is uniform at the exponential
+coupling being estimated; it is not a fixed-moment approximation.
+
+\subsection*{Relative replacement by circular Gaussians}
+
+Replace $z_p$ successively by independent
+$\zeta_p=(g_{p,1}+\ii g_{p,2})/\sqrt2$, where the $g_{p,a}$ are
+real standard Gaussians. Denote the resulting matrix by $G$.
+Circle and circular Gaussian variables have the same mixed
+moments through degree three. For a Hermitian background $H$,
+the fourth-order version of~\eqref{eq:duhamel-bound} bounds the
+Taylor remainder by
+$\norm Z^4e^{\norm Z}\Tr(e^H)/24$.
+With $Z=(tb_p/\ell)(zS+\overline zS^*)$, its expected value is
+at most $C_C(t b_p/\ell)^4\Tr(e^H)$, for either distribution.
+This follows from $\norm Z\le2\abs{tb_p/\ell}\abs z$ and
+the finite Gaussian exponential moments; $\abs{tb_p/\ell}$
+is bounded uniformly by a constant depending only on $C$.
+Both centered expectations are at least $\Tr(e^H)$. As in the
+local restoration argument, comparison is relative and gives
+\begin{equation}\label{eq:gauss-replacement}
+ \left|\log\E_z\tr_d(e^{tB_z})-
+             \log\E\tr_d(e^{tG})\right|
+ \le C_C\frac{t^4}{\ell^4}\sum_pb_p^4=O_C(1).
+\end{equation}
+There is no dimension-dependent denominator or norm bound on the
+background in this estimate.
+
+\subsection*{The two Gaussian variances}
+
+Write $G=\sum_a g_aA_a$. Direct multiplication gives
+\[
+ \sum_aA_a^2
+  =\ell^{-2}\sum_pb_p^2(S_{j_p}S_{j_p}^*+S_{j_p}^*S_{j_p})
+  \le2V_f(\ell)\ell^{-2}I_d.
+\]
+The Gaussian matrix-series bound~\cite{Tropp} therefore yields
+\begin{equation}\label{eq:gaussian-mean}
+ \E\lambda_{\max}(G)
+       \le2\sqrt{V_f(\ell)\ell^{-2}\log d}
+       =O_f(\sqrt{\log(2+t)}).
+\end{equation}
+For completeness, its trace-mgf estimate follows by Gaussian
+integration by parts and
+\[
+ \Tr(Ae^{vB}Ae^{(1-v)B})\le\Tr(A^2e^B),\quad0\le v\le1,
+\]
+for Hermitian $A,B$, which is scalar convexity in an eigenbasis
+of $B$. Thus $\E\Tr e^{\theta G}\le
+d\exp(\theta^2\norm{\sum A_a^2}/2)$; optimizing in $\theta$
+proves~\eqref{eq:gaussian-mean}.
+
+The sharp quadratic coefficient uses a different quantity:
+\begin{equation}\label{eq:weak-variance}
+ \sigma_w^2=\sup_{\norm v=1}\sum_a\ip v{A_av}^2
+     =\frac2{\ell^2}\sup_{\norm v=1}
+                    \sum_pb_p^2\abs{c_{j_p}(v)}^2,
+ \qquad c_0(v)=1.
+\end{equation}
+The top eigenvalue is the supremum of its real linear Rayleigh
+functionals, and so is $\sigma_w$-Lipschitz in the real Gaussian
+variables. Gaussian logarithmic Sobolev concentration~\cite{Gross,Ledoux}
+gives
+\begin{equation}\label{eq:weak-concentration}
+ \log\E e^{t\lambda_{\max}(G)}
+       \le t\E\lambda_{\max}(G)+t^2\sigma_w^2/2.
+\end{equation}
+In detail, for a Lipschitz function $F$ with constant $\sigma_w$,
+the logarithmic Sobolev inequality applied to $e^{tF/2}$ gives
+$t\Psi'(t)-\Psi(t)\le t^2\sigma_w^2/2$, where
+$\Psi(t)=\log\E e^{tF}$; integrate from zero. Smooth
+approximation proves the assertion for the top eigenvalue.
+
+\subsection*{All grid vectors and all intermediate couplings}
+
+Let $H_0=B_f\log^2(2+\ell)$, where $B_f$ is large enough that
+$c_f\sqrt{B_f}>12$, and take $\ell$ so large that $H_0<\ell$.
+Write $\Delta=\ell/q$. All bins whose left endpoint is less
+than $H_0$ have total normalized mass at most
+\begin{equation}\label{eq:short-bin-budget}
+ \ell^{-2}V_f(H_0+\Delta)
+       =O_f\left(\frac{\log^4(2+\ell)}{\ell^2}+q^{-2}\right).
+\end{equation}
+This includes the scalar zero bin and any straddling bin.
+For the remaining bins,~\eqref{eq:bin} and $q=O_C(\ell^6)$
+show that the sum of all normalized errors is $O_{f,C}(\ell^{-6})$.
+Their main masses are $(j+1/2)/q^2$.
+Since every $\abs{c_j(v)}\le1$, the error bounds hold for all
+unit vectors simultaneously. Enlarge the positive main sum to
+$1\le j<d$ and apply~\eqref{eq:discrete-bound}. We obtain
+\begin{align}\label{eq:uniform-weak-bound}
+ \sigma_w^2
+ &\le\frac2{q^2}\left(\frac{d^2-1}{12}+\frac d2\right)
+      +O_{f,C}\left(\frac{\log^4(2+\ell)}{\ell^2}+q^{-2}
+                          +\ell^{-6}\right)\notag\\
+ &=\frac16+O_{f,C}\left(\frac Mq+\frac1q+
+                \left(\frac Mq\right)^2+
+                \frac{\log^4(2+\ell)}{\ell^2}\right).
+\end{align}
+The extra $q^{-2}$ and $\ell^{-6}$ terms are absorbed in the
+last line. This is where weak convergence of the variance measures
+would have been insufficient: the maximizing vector changes with
+the grid, and all its bins must be controlled together.
+
+Since $\tr_d(e^{tG})\le e^{t\lambda_{\max}(G)}$, equations
+\eqref{eq:gaussian-mean}--\eqref{eq:uniform-weak-bound} give
+\[
+ \log\E\tr_d(e^{tG})
+ \le\frac{t^2}{12}+O_{f,C}\left(
+       t\sqrt{\log(2+t)}+1+
+                \frac{t^2\log^4(2+\ell)}{\ell^2}\right).
+\]
+Here $t^2(M/q+q^{-1}+(M/q)^2)=O_D(1)$.
+The last displayed error is uniformly absorbed by
+$O_C(t\sqrt{\log(2+t)}+1)$ when $2\le t\le C\ell$:
+indeed $t\log^4(2+\ell)/\ell^2\le
+C\log^4(2+\ell)/\ell$, which is bounded.
+The factor $d/q$, the additive tail in~\eqref{eq:grid-comparison},
+and~\eqref{eq:gauss-replacement} cost only bounded amounts in
+the logarithm. The Gaussian trace expectation is at least one,
+so the additive tail creates no denominator difficulty.
+
+Finally~\eqref{eq:full-local-bound} restores the complete local
+strings at coupling $t/\ell\le C$, again at bounded cost.
+The first-prime trace is even in $t$, since replacing every
+$z_p$ by $-z_p$ changes its sign. Apply the same restoration for
+negative $t$. Together with~\eqref{eq:bessel-lower}, this proves
+\eqref{eq:uniform-main} in its full range, and hence
+\eqref{eq:pressure-main} and~\eqref{eq:K-main}.
+
+\section{Intermediate scales and boundary survival}\label{sec:deviations}
+
+\subsection*{A scalar large-deviation argument}
+
+Let $r_\ell\to\infty$ with $r_\ell=O(\ell)$, and let $\mu_\ell$
+be the probability spectral law of $W_{f,\ell}/(\ell r_\ell)$
+in $\tau_\ell$. Equation~\eqref{eq:uniform-main} gives, for every
+fixed $s\in\R$,
+\begin{equation}\label{eq:scaled-mgf}
+ \frac1{r_\ell^2}\log\int e^{sr_\ell^2x}\dd\mu_\ell(x)
+   =\frac1{r_\ell^2}P_{f,\ell}(sr_\ell/\ell)
+   \longrightarrow\frac{s^2}{12}.
+\end{equation}
+For $s\ne0$ one applies the uniform estimate at $t=\abs s r_\ell$
+with its fixed upper constant enlarged by $\abs s$; $s=0$ is
+immediate. This works however slowly $r_\ell$ diverges.
+
+We give the short scalar tilting proof to specify the measure
+and the quantifiers. The same argument will later apply to
+the central limiting law. More generally let probability measures
+$\mu_j$ have speed $v_j\to\infty$ and scaled logarithmic mgf
+$L_j(s)=\log\int e^{sv_jx}\dd\mu_j(x)$ with
+$L_j(s)/v_j\to s^2/12$ for every real $s$. Define
+\[
+ \dd\mu_{j,s}(x)=e^{sv_jx-L_j(s)}\dd\mu_j(x).
+\]
+For $h>0$, exponential Markov gives
+\[
+ \limsup_j v_j^{-1}\log\mu_{j,s}(x\ge s/6+\eta)
+ \le\frac{(s+h)^2-s^2}{12}-h(s/6+\eta)
+ =h^2/12-h\eta.
+\]
+Take $h=6\eta$. A negative increment proves the corresponding
+left-tail estimate. Thus
+\begin{equation}\label{eq:tilted-concentration}
+ \limsup_jv_j^{-1}\log\mu_{j,s}(\abs{x-s/6}\ge\eta)
+       \le-3\eta^2.
+\end{equation}
+For any $a\in\R$, set $s=6a$ and undo the tilt on
+$(a-\eta,a+\eta)$; its tilted mass tends to one. This gives
+\[
+ \liminf_jv_j^{-1}\log\mu_j((a-\eta,a+\eta))
+       \ge-3a^2-6\abs a\eta.
+\]
+Shrinking the interval inside an open set proves the lower bound.
+For an upper bound near $a$ use Markov with $s=6a$; a finite
+cover gives the bound on compact sets. Markov at $s=\pm6R$
+also gives exponential tightness,
+$\limsup_jv_j^{-1}\log\mu_j(\abs x\ge R)\le-3R^2$.
+It extends the compact upper bound to every closed set.
+Consequently for every Borel set $B$,
+\begin{equation}\label{eq:LDP}
+ -\inf_{B^\circ}3x^2
+ \le\liminf_jv_j^{-1}\log\mu_j(B)
+ \le\limsup_jv_j^{-1}\log\mu_j(B)
+ \le-\inf_{\overline B}3x^2.
+\end{equation}
+We use $\log0=-\infty$ and $\inf\varnothing=+\infty$.
+Applying this proof to~\eqref{eq:scaled-mgf} establishes the
+claimed intermediate-scale principle. For every fixed $a>0$,
+\begin{equation}\label{eq:moderate-tails}
+ \begin{split}
+ \lim_{\ell\to\infty}r_\ell^{-2}
+   \log\tau_\ell(\one_{[a\ell r_\ell,\infty)}(W_{f,\ell}))&=-3a^2,\\
+ \lim_{\ell\to\infty}r_\ell^{-2}
+   \log\tau_\ell(\one_{(-\infty,-a\ell r_\ell]}(W_{f,\ell}))&=-3a^2.
+ \end{split}
+\end{equation}
+The equality follows by sandwiching between open and closed rays;
+their rate infima agree. Equal leading tail rates do not assert
+exact symmetry of the full finite-window prime-power law.
+
+\subsection*{Which spectral mass carries the Weyl coefficient}
+
+Taking $r_\ell=\ell$, the exponential tilt at fixed coupling $s$
+concentrates $W_{f,\ell}/\ell^2$ at $s/6$ by
+\eqref{eq:tilted-concentration}. At the Weyl coupling $s=1/2$
+this value is $1/12$.
+One can also recover the tilted first moment without differentiating
+an asymptotic expansion. The functions
+$\ell^{-2}P_{f,\ell}(s)$ are convex and differentiable. For $h>0$
+their derivatives lie between their left and right difference
+quotients. First let $\ell$ tend to infinity in these bounds and
+then let $h\downarrow0$. This proves
+\begin{equation}\label{eq:tilted-mean}
+ \frac{\tau_\ell(W_{f,\ell}e^{sW_{f,\ell}})}
+        {\ell^2\tau_\ell(e^{sW_{f,\ell}})}\longrightarrow\frac s6.
+\end{equation}
+No convergence of second derivatives, tilted variances, or
+tilted Gaussian fluctuations is inferred by this argument.
+
+\subsection*{The exact exponential cost of surviving the boundary}
+
+For first primes and fixed $s\ne0$, introduce independent integer
+counts $R_p$ with
+\[
+ \mathbb P(R_p=r)=\frac{(\abs s\abs{b_p})^{2r}}
+                         {(r!)^2I_0(2\abs s\abs{b_p})},\qquad r\ge0.
+\]
+Given these counts, choose uniformly an ordering of $R_p$ copies
+of $+h_p$ and $R_p$ copies of $-h_p$ for each prime. Let
+$F_\ell=(1-\operatorname{range}/\ell)_+$ be the surviving
+fraction of starting positions. Counting these orderings in the
+exponential series gives the exact formula
+\begin{equation}\label{eq:survival-identity}
+ \tau_\ell(e^{sW^{(1)}})
+       =\prod_pI_0(2\abs s\abs{b_p})\,\E F_\ell.
+\end{equation}
+These are paired words, not paths with independent increments.
+By~\eqref{eq:variance} and the summable fourth-power error,
+the logarithm of the unmasked product is
+$s^2\ell^2/2+O_{f,s}(1)$. The pressure estimate gives
+\begin{equation}\label{eq:survival-rate}
+ \log\E F_\ell=-\frac{5s^2}{12}\ell^2
+                  +O_{f,s}(\ell\sqrt{\log(2+\ell)}).
+\end{equation}
+Thus the boundary contributes at leading exponential order,
+not merely as a lower-order endpoint correction.
+
+\section{The central arithmetic law and its sharp tails}\label{sec:central}
+
+\subsection*{A complete moment description}
+
+For a pair partition $\pi$ of $\{1,\ldots,2m\}$ label its
+pairs in order of first occurrence. Give pair $j$ a length
+$a_j\in[0,1]$ and an orientation $\varepsilon_j\in\{1,-1\}$.
+Its first occurrence contributes increment $\varepsilon_ja_j$
+and its second contributes $-\varepsilon_ja_j$. If
+$r_0=0,r_1,\ldots,r_{2m}=0$ are the partial sums, put
+\[
+ F_{\pi,\varepsilon}(a)
+    =(1-\max_i r_i+\min_i r_i)_+.
+\]
+The central moments are
+\begin{equation}\label{eq:central-moments}
+ m_0=1,\quad m_{2m+1}=0,\qquad
+ m_{2m}=\sum_\pi\sum_{\varepsilon\in\{\pm1\}^m}
+        \int_{[0,1]^m}F_{\pi,\varepsilon}(a)
+                           \prod_{j=1}^m a_j\dd a_j.
+\end{equation}
+In particular $0\le m_{2m}\le(2m-1)!!$, since the masks are
+at most one and $2\int_0^1a\dd a=1$. The formal exponential
+series therefore satisfies
+\begin{equation}\label{eq:central-entire}
+ M(s):=\sum_{m\ge0}\frac{m_{2m}s^{2m}}{(2m)!}\le e^{s^2/2}
+ \qquad(s\in\R).
+\end{equation}
+
+We obtain existence of its probability measure from the actual
+operators. Expand $\tau_\ell((W^{(1)}/\ell)^r)$. Every surviving
+word is balanced at each prime, so odd moments vanish. At degree
+$2m$, words with exactly $m$ distinct primes, each occurring twice,
+are indexed by $\pi$, $\varepsilon$, and distinct prime labels.
+Their masks are exactly those in~\eqref{eq:central-moments}.
+Write $c_{p,\ell}=b_p/\ell$. Allowing repeated labels in this
+pairing formula, and bounding words with a prime used four or
+more times, costs at most
+\[
+ C_m\left(\sum_pc_{p,\ell}^4\right)
+           \left(1+\sum_pc_{p,\ell}^2\right)^{m-2}=o_f(1)
+ \quad(m\ge2).
+\]
+To see this, select two paired labels with a common prime,
+sum that prime with fourth-power weight, and sum the other
+labels freely. There are only finitely many overcountings at
+fixed $m$, and every mask is bounded by one. For $m=1$ there
+is no collision error.
+
+The masks are continuous in their lengths. The variance-measure
+convergence in~\eqref{eq:variance-measure} now gives exactly
+\eqref{eq:central-moments}. Also the unmasked positive-word bound
+gives, for every real $s$,
+\begin{equation}\label{eq:central-UI}
+ \tau_\ell(e^{sW^{(1)}/\ell})
+ \le\prod_pI_0(2sb_p/\ell)
+ \le\exp(s^2V_f(\ell)/\ell^2).
+\end{equation}
+Second moments give tightness of the spectral laws. Higher moments
+give uniform integrability of each fixed power, and
+\eqref{eq:central-UI} at larger positive and negative arguments
+gives uniform integrability of each fixed exponential.
+Every subsequential limit has~\eqref{eq:central-moments}, and
+the Gaussian moment majorant makes this moment problem determinate.
+Hence there is a unique probability measure $\nu$, with mgf
+$M$, and the whole sequence converges weakly, in moments, and
+in real exponential moments.
+
+Applying~\eqref{eq:full-local-bound} at $s/\ell$ shows that the
+full and first-prime logarithmic mgfs differ by $O_s(\ell^{-2})$.
+It also provides uniform exponential bounds at all larger fixed
+arguments for the full operators. Tightness, subsequence
+uniqueness, and uniform integrability then prove the same three
+convergences for $W_{f,\ell}/\ell$. All local factors are included.
+
+\subsection*{The Toeplitz identification and the low moments}
+
+For the matrices~\eqref{eq:toeplitz-intro}, the circular Gaussian
+Wick formula pairs opposite orientations. A closed integer word
+has normalized trace $(1-\operatorname{range}/n)_+$.
+The variance of its $j$th diagonal is $j/n^2$, and the sums over
+$j/n$ are Riemann sums. The expected normalized trace moments
+therefore converge to~\eqref{eq:central-moments}. Uniform
+unmasked Gaussian bounds justify all fixed exponential moments
+as well. This identifies $\nu$ as the expected limiting spectral
+measure; no almost-sure assertion is needed.
+
+This law is the $\sqrt a$ specialization of the variance-profile
+theorem in~\cite{BSS}, Theorem 3.3 and Section 7.2.2 in the
+arXiv version cited there.
+Their real symmetric formulation has the same limiting moments.
+Indeed a real Wick pair with equal rather than opposite
+orientations imposes a nontrivial linear closure equation on
+the diagonal lengths. At fixed order this leaves $O(n^{m-1})$
+choices rather than $O(n^m)$; each variance is at most $1/n$,
+so its normalized contribution is $O(n^{-1})$.
+Coincident diagonal lengths have the same lower-order counting
+loss. The opposite orientations give exactly the circular
+complex limit above.
+
+At order two the two orientations each have mask $1-a$, giving
+$m_2=2\int_0^1a(1-a)\dd a=1/3$. At order four set
+\[
+ I_{\max}=\int_0^1\int_0^1ab(1-\max(a,b))\dd a\dd b=\frac1{20},
+ \qquad
+ I_{\Sigma}=\int_{a+b\le1}ab(1-a-b)\dd a\dd b=\frac1{120}.
+\]
+Splitting the square into its two triangles proves the first
+evaluation; integrating in $b$ first proves the second.
+For each of the pair words $AABB$ and $ABBA$, two orientations
+give $I_{\max}$ and two give $I_{\Sigma}$. The word $ABAB$
+has four orientations giving $I_{\Sigma}$. Therefore
+\begin{equation}\label{eq:moments-low}
+ m_2=\frac13,\qquad m_4=4I_{\max}+8I_{\Sigma}=\frac4{15}.
+\end{equation}
+These numbers are evaluations of the specified profile law,
+not separate general random-matrix assertions.
+
+\subsection*{A direct large-coupling estimate for the limiting law}
+
+Taking $\ell\to\infty$ at fixed $s$ in the flat-vector lower
+bound~\eqref{eq:bessel-lower} gives
+\begin{equation}\label{eq:central-lower}
+ M(s)\ge e^{s^2/12}\qquad(s\in\R).
+\end{equation}
+For a matching upper estimate work directly with
+\eqref{eq:central-moments}, not with a diagonal substitution
+in a fixed-$s$ convergence statement. By symmetry take $s\ge2$.
+Choose $L=\lceil Ds^2\rceil$, $q=\lceil s^6\rceil$,
+$d=q+2L$, with $D\log2>4$. The part of the positive moment
+series above degree $L$ is at most
+$2^{-L}M(2s)\le e^{-s^2}$ by~\eqref{eq:central-entire}.
+Round each length $a$ down to $j/q$. The same enlarged-interval
+argument as in~\eqref{eq:mask-domination} dominates every
+retained mask by $d/q$ times its grid mask. The bin masses now
+are exact:
+\[
+ w_j=\int_{j/q}^{(j+1)/q}a\dd a=\frac{j+1/2}{q^2},
+ \qquad 0\le j<q.
+\]
+Let
+\[
+ G_{q,d}=\sum_{j=0}^{q-1}\sqrt{w_j}
+                  (z_jS_j+\overline z_jS_j^*),\qquad S_0=I_d.
+\]
+The Wick expansion of its exponential is precisely the rounded
+pairing expansion, including multiple pairs in one bin and the
+scalar zero-lag term. Thus
+\begin{equation}\label{eq:central-grid}
+ M(s)\le\frac dq\E\tr_d(e^{sG_{q,d}})+e^{-s^2}.
+\end{equation}
+The strong real-Gaussian variance is at most
+$2\sum_jw_jI_d=I_d$, so $\E\lambda_{\max}(G_{q,d})
+\le\sqrt{2\log d}$. By~\eqref{eq:discrete-bound} its weak variance
+is bounded by
+\[
+ \frac2{q^2}\left(\frac{d^2-1}{12}+\frac d2+\frac12\right)
+       =\frac16+O(L/q+q^{-1}+(L/q)^2).
+\]
+The Gaussian concentration calculation now gives
+\begin{equation}\label{eq:central-pressure}
+ \frac{s^2}{12}\le\log M(s)
+       \le\frac{s^2}{12}+C\abs s\sqrt{\log(2+\abs s)}
+       \quad(\abs s\ge s_0),
+\end{equation}
+with absolute constants. The grid errors multiplied by $s^2$
+are bounded, $d/q$ is bounded, and the additive tail in
+\eqref{eq:central-grid} is harmless because the centered
+Gaussian trace expectation is at least one.
+
+If $Y$ has law $\nu$, then
+$R^{-2}\log\E e^{sR^2(Y/R)}=R^{-2}\log M(sR)\to s^2/12$.
+Apply the tilting proof of Section~\ref{sec:deviations} with
+speed $R^2$. Open and closed rays give exactly the two limits
+in~\eqref{eq:central-intro}. In particular both sides of the
+support of $\nu$ are unbounded. The quadratic logarithmic
+tails do not make the distribution Gaussian.
+
+\section{Several arithmetic forms in one translation algebra}\label{sec:colored}
+
+Fix pairwise inequivalent primitive holomorphic forms
+$f_1,\ldots,f_d$, each satisfying the earlier real,
+trivial-character hypotheses. The tuple is fixed throughout.
+Let $\mathcal P_0$ be the primes good for every member, and put
+$b_i(p)=\lambda_{f_i}(p)\log p/\sqrt p$ there.
+The off-diagonal version of the same prime number theorem,
+\cite[Theorem 1.1]{GJ}, gives
+\begin{equation}\label{eq:cross-RS}
+ \sum_{\substack{p\le X\\p\in\mathcal P_0}}
+        \lambda_{f_i}(p)\lambda_{f_j}(p)\log p
+ =\delta_{ij}X+O_{\boldsymbol f}(Xe^{-c_{\boldsymbol f}\sqrt{\log X}}).
+\end{equation}
+The theorem excludes imaginary norm twists in its off-diagonal
+case. Here such an equivalence would force the twist parameter
+to be zero because both central characters are trivial; thus
+pairwise inequivalence suffices. Distinct quadratic twists qualify
+only when the resulting representations are genuinely inequivalent.
+A complex-multiplication self-twist does not create a new color.
+
+Weighted partial summation yields
+$\sum_{h_p<H}b_i(p)b_j(p)=\delta_{ij}H^2/2+O_{\boldsymbol f}(1)$.
+The signed measures
+$\ell^{-2}\sum b_i(p)b_j(p)\delta_{h_p/\ell}$ converge to
+$\delta_{ij}a\dd a$ and have uniformly bounded total variations
+by Cauchy--Schwarz. Their product measures consequently converge
+against continuous masks: approximate a mask uniformly by sums
+of product functions and use the total-variation bounds.
+
+\subsection*{The colored moment formula}
+
+Put $X_{i,\ell}=W_{f_i,\ell}/\ell$, all in the same algebra
+$\mathcal A_\ell$. The limit of a fixed mixed moment of even
+length is
+\begin{equation}\label{eq:colored-law}
+ \lim_{\ell\to\infty}\tau_\ell(X_{i_1,\ell}\cdots X_{i_{2m},\ell})
+ =\sum_{\substack{\pi\text{ a pairing}\\
+          \text{each pair has equal colors}}}
+       \sum_{\varepsilon\in\{\pm1\}^m}
+       \int F_{\pi,\varepsilon}(a)\prod_{j=1}^m a_j\dd a_j.
+\end{equation}
+Odd limits vanish. For the common-good first-prime parts the
+proof is the earlier distinct-prime pairing expansion, now using
+the signed cross-variance measures. Repeated labels are bounded
+by the same fourth-power majorant, since the tuple is fixed.
+
+To restore all local factors in mixed words, write $R_i$ for
+the difference between the full operator and its common-good
+first-prime part. The two-letter trace gives exactly
+\[
+ \tau_\ell(R_i^2)=2\sum_{\text{omitted active }p^m}
+               b_{f_i}(p^m)^2(1-m\log p/\ell)_+
+       \le C_{\boldsymbol f}.
+\]
+Besides higher powers this includes finitely many primes bad
+for another tuple member. Thus
+$\norm{R_i/\ell}_{L^2(\tau_\ell)}=O_{\boldsymbol f}(\ell^{-1})$.
+The scalar exponential bounds give uniformly bounded tracial
+$L^p$ norms at each fixed finite $p$ for all normalized full and
+first-prime operators. Telescope a mixed word of length $r\ge2$,
+put its remainder in $L^2$, and its other $r-1$ factors in
+$L^{2(r-1)}$. Tracial H\"older makes each replacement
+$O_{\boldsymbol f,r}(\ell^{-1})$. The first moments are zero.
+This proves~\eqref{eq:colored-law} for the original full operators.
+
+Taking limits of $\tau_\ell(P^*P)$ shows that these moments
+define a positive normalized tracial functional on polynomials
+in selfadjoint variables $X_1,\ldots,X_d$. It is the weighted
+colored Toeplitz law realized by independent circular Gaussian
+diagonal families on one common matrix space. This does not
+assert the existence of bounded limiting variables; their scalar
+laws have unbounded support.
+
+For distinct colors $X,Y$, the pair integrals already computed give
+\begin{equation}\label{eq:mixed-moments}
+ \tau(XY)=0,\qquad
+ \tau(X^2Y^2)=\frac7{60},\qquad
+ \tau(XYXY)=\frac1{30},\qquad
+ \tau([X,Y]^*[X,Y])=\frac16.
+\end{equation}
+The last identity follows by expanding the commutator and using
+cyclicity. Thus orthogonality of the arithmetic prime coefficients
+does not produce commuting variables or freeness. Nor are the
+second powers classically independent: $7/60\ne1/9$.
+These profile-specific values illustrate the established colored
+Toeplitz phenomenon~\cite{BHS}.
+
+\subsection*{Orthogonal invariance without classical independence}
+
+For $a\in\R^d$ set $X(a)=\sum_i a_iX_i$. Multilinearity in
+\eqref{eq:colored-law} gives, for vectors $a_1,\ldots,a_{2m}$,
+\begin{equation}\label{eq:vector-pairing}
+ \tau(X(a_1)\cdots X(a_{2m}))
+ =\sum_\pi\left(\prod_{\{r,s\}\in\pi}a_r\cdot a_s\right)
+        \sum_{\varepsilon}\int F_{\pi,\varepsilon}(v)
+                                        \prod_jv_j\dd v_j.
+\end{equation}
+Hence the entire joint moment law is invariant under real
+orthogonal changes of color. In particular the scalar law of
+$X(a)$ is the dilation of $\nu$ by $\norm a_2$; its moments
+and exponential moments determine it uniquely. Orthogonal
+invariance here is compatible with the nonzero commutator
+in~\eqref{eq:mixed-moments}; it is not a multivariate classical
+Gaussian law.
+
+There is also a growing-window statement for each fixed real
+linear combination $B_{a,\ell}=\sum_i a_iW_{f_i,\ell}$:
+\begin{equation}\label{eq:vector-pressure}
+ \log\tau_\ell(e^{B_{a,\ell}})
+   =\frac{\norm a_2^2}{12}\ell^2
+                +O_{\boldsymbol f,a}(\ell\sqrt{\log(2+\ell)}),
+\end{equation}
+with bounded lower error. Retain every actual first harmonic
+and form the real coefficient array $\sum_i a_i b_i(p)$.
+Equation~\eqref{eq:cross-RS} gives its variance density
+$\norm a_2^2 a\dd a$, including the moving-bin error.
+The positive balanced-word and Gaussian arguments then apply
+to this single array. The higher local harmonics are restored
+by~\eqref{eq:local-relative}, with constants depending on the
+fixed tuple and $a$. One phase is used at each prime, shared
+by all the forms and all its harmonics. Assigning independent
+phases to different forms at the same prime would change the
+operator and is not done.
+
+This is a family of scalar spectral assertions in a noncommutative
+algebra. It does not define a joint classical spectral measure
+for all $W_{f_i,\ell}$, and makes no estimate uniform in a
+growing tuple or a growing conductor.
+
+\section{Tapers with equal variance and different Weyl growth}\label{sec:tapers}
+
+The constant $1/12$ reflects where the variance lies among the
+translation lengths, not just its total size. We make this
+distinction quantitative for an explicit deformation of the
+actual arithmetic operator.
+
+\subsection*{A boundary-profile criterion}
+
+Let $w\ge0$ be continuous on $[0,1]$, and set
+\[
+ J_w(u)=\int_0^1w(a)\abs{c_u(a)}^2\dd a,\qquad
+ K(a)=w(a)(1-a).
+\]
+Assume $K(0)=K(1)=0$, $K(a)=K(1-a)$, and that the periodic
+Fourier series of $K$ is absolutely convergent with
+$\widehat K(n)\le0$ for every $n\ne0$.
+The coefficients are real by symmetry. The overlap
+Cauchy--Schwarz argument and Fourier expansion give, for unit $u$,
+\begin{align}\label{eq:general-profile}
+ J_w(u)&\le\frac12\int_0^1\int_0^1
+                 K(x-y)\abs{u(x)}^2\abs{u(y)}^2\dd x\dd y\notag\\
+ &=\frac{\widehat K(0)}2+
+              \sum_{n\ge1}\widehat K(n)\abs{\widehat F(n)}^2
+ \le\frac{\widehat K(0)}2.
+\end{align}
+The symmetry of $K$ implies
+\begin{equation}\label{eq:profile-constant}
+ c(w):=\frac{\widehat K(0)}2
+       =\int_0^1w(a)(1-a)^2\dd a=J_w(1),
+\end{equation}
+so the bound is sharp. The same Tonelli argument as before
+handles every $L^2$ profile. More precisely the difference
+$c(w)-J_w(u)$ is the sum of
+$\sum_{n\ge1}(-\widehat K(n))\abs{\widehat F(n)}^2$ and
+the overlap-variance term in~\eqref{eq:continuous-deficit}
+with $a$ replaced by $w(a)$.
+The use of nonpositive nonconstant Fourier coefficients is the
+classical energy principle for a kernel of conditionally negative
+type; see~\cite{BCR}. The preceding calculation states the
+precise version needed here and proves it directly.
+
+The symmetry condition is not arbitrary. For a bounded real
+mean-zero $v$, differentiate at $\eta=0$ the profile
+$(1+\eta v)/\norm{1+\eta v}_2$. The first variation is
+\[
+ 2\int_0^1v(x)\left(
+       \int_0^xK(a)\dd a+\int_0^{1-x}K(a)\dd a\right)\dd x.
+\]
+It vanishes for every such $v$ exactly when the bracket is
+constant. Its derivative is $K(x)-K(1-x)$, so flat
+stationarity is equivalent to kernel symmetry. Imaginary
+first variations vanish automatically. The Fourier-sign
+condition is a sufficient global-optimality condition beyond
+stationarity; we do not assert that it is necessary.
+
+There is also a finite-grid estimate without an asymptotic
+optimizer argument. For a unit vector in $\C^d$, set
+$F_i=\abs{v_i}^2$ as before. Then
+\begin{align}\label{eq:taper-grid}
+ \frac1d\sum_{j=1}^{d-1}w(j/d)\abs{c_j(v)}^2
+ &\le\frac12\sum_{i,k=0}^{d-1}K((i-k)/d)F_iF_k\notag\\
+ &=c(w)+\frac12\sum_{n\ne0}\widehat K(n)
+              \left|\sum_iF_i e^{2\pi\ii ni/d}\right|^2
+ \le c(w).
+\end{align}
+The kernel is periodic. All nonzero Fourier indices, including
+multiples of $d$, are retained; their signs help the bound.
+If $w$ is Lipschitz and $d=q+2M$, changing $j/d$ to $j/q$
+and then enlarging the nonnegative sum proves
+\begin{equation}\label{eq:taper-mesh-change}
+ \frac1q\sum_{j=1}^{q-1}w(j/q)\abs{c_j(v)}^2
+ \le\frac dq c(w)+\operatorname{Lip}(w)\frac dq
+                                      \left(\frac dq-1\right).
+\end{equation}
+Here $\sum_j\abs{c_j(v)}^2\le d$ suffices for the error.
+
+\subsection*{The full arithmetic deformation}
+
+Let $g\in C^1([0,1];\R)$ be fixed, and suppose the profile
+$w(a)=ag(a)^2$ satisfies the criterion above with $c(w)>0$.
+Absolute Fourier convergence is automatic in this class:
+the continuous periodic kernel has a weak derivative in $L^2$,
+so Cauchy--Schwarz applied to its weighted Fourier coefficients
+gives $\sum_n\abs{\widehat K(n)}<\infty$.
+Define
+\begin{equation}\label{eq:taper-operator}
+ W_{f,\ell}^g=\sum_{p^m<e^\ell}b_f(p^m)g(m\log p/\ell)
+                           (S_{m\log p}+S_{-m\log p}).
+\end{equation}
+For fixed $f,g,C$ and $2\le\abs t\le C\ell$, the complete
+uniform conclusion is
+\begin{equation}\label{eq:taper-pressure}
+ c(w)t^2-O_{f,g,C}(1)
+ \le\log\tau_\ell(e^{tW_{f,\ell}^g/\ell})
+ \le c(w)t^2+O_{f,g,C}\bigl(1+\abs t\sqrt{\log(2+\abs t)}\bigr).
+\end{equation}
+We detail the changes to the pressure proof to keep every cost
+explicit. The local absolute and squared budgets are multiplied
+by at most $\norm g_\infty$ and $\norm g_\infty^2$,
+respectively. The relative Taylor argument therefore still
+restores all local harmonics at bounded cost for bounded
+physical coupling; each prime retains its single phase.
+The lower Bessel bound uses
+$F(a)=g(a)^2(1-a)^2$. Stieltjes integration by parts against
+\eqref{eq:variance}, using $F(1)=0$, gives
+\[
+ \sum_pb_p^2F(h_p/\ell)=\ell^2\int_0^1aF(a)\dd a+O_{f,g}(1)
+                         =c(w)\ell^2+O_{f,g}(1).
+\]
+The fourth-power remainder remains summable.
+
+For the upper bound take $M=\lceil D_gt^2\rceil$ and
+$q=\lceil t^6\rceil$, choosing $D_g$ large enough to
+absorb the factor $\norm g_\infty^2$ in the unmasked
+word-tail estimate. The mask domination and relative Gaussian
+replacement are unchanged. In the normalized weak-variance sum,
+replacing $g(h_p/\ell)^2$ by $g(j_p/q)^2$ costs at most
+\[
+ \frac{\operatorname{Lip}(g^2)}q\frac{V_f(\ell)}{\ell^2}
+                              =O_{f,g}(q^{-1}).
+\]
+In each long bin the main mass is now
+$w(j/q)/q+g(j/q)^2/(2q^2)$; the summed second term is
+$O_g(d/q^2)$. The short-bin budget remains
+$O_{f,g}(\log^4(2+\ell)/\ell^2+q^{-2})$.
+The moving-bin errors are unchanged up to a bounded factor.
+Equation~\eqref{eq:taper-mesh-change} therefore bounds the
+weak-variance half by
+\[
+ c(w)+O_{f,g,C}\left(M/q+q^{-1}
+                              +\log^4(2+\ell)/\ell^2\right).
+\]
+The strong variance stays bounded. Gaussian concentration,
+the same uniform absorption of the arithmetic error, and
+restoration of the local strings prove~\eqref{eq:taper-pressure}.
+The constants are uniform on any $C^1$-bounded family of
+tapers satisfying the stated kernel conditions.
+
+The proof of Section~\ref{sec:deviations} now gives rate
+$x^2/(4c(w))$ for every diverging scale $r_\ell=O(\ell)$
+of $W_{f,\ell}^g/(\ell r_\ell)$, with speed $r_\ell^2$.
+This uses $c(w)>0$. It is not a central-law assertion obtained
+by sending $r_\ell$ to a constant.
+
+\subsection*{An explicit equal-variance family}
+
+Take $g_\varepsilon(a)=\sqrt{1+\varepsilon\cos(2\pi a)}$.
+The kernel is
+$K_\varepsilon(a)=a(1-a)(1+\varepsilon\cos(2\pi a))$.
+Multiplying its absolutely convergent Bernoulli series gives
+\begin{align}\label{eq:taper-fourier}
+ \widehat K_\varepsilon(0)&=\frac16-\frac{\varepsilon}{2\pi^2},
+ &\widehat K_\varepsilon(1)&=-\frac1{2\pi^2}
+                       +\varepsilon\left(\frac1{12}-\frac1{16\pi^2}\right),
+ \notag\\
+ \widehat K_\varepsilon(n)&=-\frac1{2\pi^2n^2}
+       -\frac{\varepsilon}{4\pi^2}
+          \left(\frac1{(n-1)^2}+\frac1{(n+1)^2}\right),&&n\ge2.
+\end{align}
+The $n=1$ restriction is
+$\varepsilon\le24/(4\pi^2-3)$. For $n\ge2$ it is
+$\varepsilon\ge-(n^2-1)^2/(n^2(n^2+1))$.
+The positive ratio $(n^2-1)^2/[n^2(n^2+1)]$ increases with $n\ge2$
+(as a function of $y=n^2$ its derivative has numerator
+$(3y+1)(y-1)$). Thus all nonconstant coefficients are
+nonpositive exactly on
+\begin{equation}\label{eq:taper-range}
+ -\frac9{20}\le\varepsilon\le\frac{24}{4\pi^2-3},
+ \qquad c_\varepsilon=\frac1{12}-\frac{\varepsilon}{4\pi^2}>0.
+\end{equation}
+This closed interval lies strictly inside $(-1,1)$, so these
+tapers are uniformly smooth and bounded away from zero.
+The pressure estimate~\eqref{eq:taper-pressure} holds uniformly
+over the entire interval, including its endpoints. This is
+the exact interval for the Fourier-sign certificate, not a
+claim that the flat profile ceases to be optimal outside it.
+
+On a compact subinterval of its interior, both
+$w_\varepsilon(a)/a$ and
+$2\pi^2n^2[-\widehat K_\varepsilon(n)]$ have uniform positive
+lower bounds. The exact weighted deficit consequently dominates
+a positive constant times $D(u)$. Strong stability modulo
+affine phase follows from~\eqref{eq:stability-intro}, uniformly
+on each such compact parameter set. No endpoint stability
+constant is asserted here.
+
+This family has equal total leading first-prime variance:
+\[
+ \int_0^1ag_\varepsilon(a)^2\dd a=\frac12,
+ \qquad
+ \sum_pb_p^2g_\varepsilon(h_p/\ell)^2=\frac{\ell^2}{2}+O_f(1),
+\]
+uniformly over~\eqref{eq:taper-range}. The latter follows by
+the same bounded-variation integration against~\eqref{eq:variance}.
+Thus the unmasked product still has fixed-coupling logarithm
+$s^2\ell^2/2+O_{f,s}(1)$, whereas its killed logarithm has
+leading coefficient $s^2c_\varepsilon$. The paired-word identity
+gives
+\begin{equation}\label{eq:taper-survival}
+ \log\E F_\ell
+   =-s^2\left(\frac5{12}+\frac{\varepsilon}{4\pi^2}\right)\ell^2
+                   +O_{f,s}(\ell\sqrt{\log(2+\ell)}).
+\end{equation}
+The distribution of the paired words here uses the tapered
+first-prime coefficients. Formula~\eqref{eq:taper-survival}
+isolates a change in boundary confinement while preserving
+the total leading scalar variance.
+
+Finally replace $W$ by $W^{g_\varepsilon}$ in
+\eqref{eq:gamma-identity}, retaining the same gamma operator.
+Its fixed-window Weyl coefficient satisfies
+\begin{equation}\label{eq:taper-K}
+ \log K_{f,\ell}^{\varepsilon}
+  =\left(\frac1{48}-\frac{\varepsilon}{16\pi^2}\right)\ell^2
+        +\log\frac{2\ell}{\sqrt N}
+        +O_f(\ell\sqrt{\log(2+\ell)}),
+\end{equation}
+again with bounded lower error and constants uniform in the
+displayed parameter interval. These are deformed logarithmic
+operators. Only $\varepsilon=0$ is the original arithmetic
+operator of the preceding sections.
+
+\section*{Note on AI Use}
+The author declares the use of consumer-grade Gemini-3 and GPT-6 models for prior-art search, exploring and developing ideas and proofs, drafting and LaTeX typesetting; the author takes full and sole responsibility for all contents of this work.
+
+\begin{thebibliography}{99}
+
+\bibitem{AL}
+A.~O.~L. Atkin and J. Lehner,
+\emph{Hecke operators on $\Gamma_0(m)$},
+Math. Ann. \textbf{185} (1970), 134--160.
+\href{https://doi.org/10.1007/BF01359701}{doi:10.1007/BF01359701}.
+
+\bibitem{BCR}
+C. Berg, J.~P.~R. Christensen, and P. Ressel,
+\emph{Harmonic Analysis on Semigroups: Theory of Positive Definite
+and Related Functions},
+Graduate Texts in Mathematics, vol.~100, Springer, New York, 1984.
+\href{https://doi.org/10.1007/978-1-4612-1128-0}{doi:10.1007/978-1-4612-1128-0}.
+
+\bibitem{BHS}
+A. Bose, R.~S. Hazra, and K. Saha,
+\emph{Convergence of joint moments for independent random patterned matrices},
+Ann. Probab. \textbf{39} (2011), no.~4, 1607--1620.
+\href{https://doi.org/10.1214/10-AOP597}{doi:10.1214/10-AOP597};
+\href{https://arxiv.org/abs/1211.3864}{arXiv:1211.3864}.
+
+\bibitem{BSS}
+A. Bose, K. Saha, and P. Sen,
+\emph{Some patterned matrices with independent entries},
+Random Matrices Theory Appl. \textbf{10} (2021), article 2150030.
+\href{https://doi.org/10.1142/S2010326321500301}{doi:10.1142/S2010326321500301}.
+Updated author version:
+\href{https://arxiv.org/abs/2203.05837v1}{arXiv:2203.05837v1} (2022).
+
+\bibitem{BDJ}
+W. Bryc, A. Dembo, and T. Jiang,
+\emph{Spectral measure of large random Hankel, Markov and Toeplitz matrices},
+Ann. Probab. \textbf{34} (2006), no.~1, 1--38.
+\href{https://doi.org/10.1214/009117905000000495}{doi:10.1214/009117905000000495}.
+
+\bibitem{ChandruB}
+R. Arun Chandru,
+\emph{Arithmetic identification from interval Weil spectra},
+preprint, 2026.
+\href{https://doi.org/10.5281/zenodo.22834353}{doi:10.5281/zenodo.22834353}.
+
+
+\bibitem{ChandruW}
+R. Arun Chandru,
+\emph{Sharp Weyl laws and resonance transitions for logarithmic
+operators with killed translations},
+preprint, 2026.
+\href{https://doi.org/10.5281/zenodo.22881457}{doi:10.5281/zenodo.22881457}.
+
+
+\bibitem{Christ}
+M. Christ,
+\emph{A sharpened Hausdorff--Young inequality},
+preprint, 2014.
+\href{https://arxiv.org/abs/1406.1210}{arXiv:1406.1210}.
+
+\bibitem{Deligne}
+P. Deligne,
+\emph{La conjecture de Weil. I},
+Publ. Math. Inst. Hautes \'Etudes Sci. \textbf{43} (1974), 273--307.
+\href{https://doi.org/10.1007/BF02684373}{doi:10.1007/BF02684373}.
+
+\bibitem{GRR}
+A.~M. Garsia, E. Rodemich, and H. Rumsey, Jr.,
+\emph{On some extremal positive definite functions},
+J. Math. Mech. \textbf{18} (1969), no.~9, 805--834.
+
+\bibitem{GJ}
+T. Gillespie and G. Ji,
+\emph{A prime number theorem for Rankin--Selberg $L$-functions
+over number fields},
+preprint, 2009.
+\href{https://arxiv.org/abs/0910.3660}{arXiv:0910.3660}.
+
+\bibitem{Gross}
+L. Gross,
+\emph{Logarithmic Sobolev inequalities},
+Amer. J. Math. \textbf{97} (1975), no.~4, 1061--1083.
+\href{https://doi.org/10.2307/2373688}{doi:10.2307/2373688}.
+
+\bibitem{LW}
+A. Laptev and T. Weth,
+\emph{Spectral properties of the logarithmic Laplacian},
+Anal. Math. Phys. \textbf{11} (2021), article 133.
+\href{https://doi.org/10.1007/s13324-021-00527-y}{doi:10.1007/s13324-021-00527-y};
+\href{https://arxiv.org/abs/2009.03395}{arXiv:2009.03395}.
+
+\bibitem{Ledoux}
+M. Ledoux,
+\emph{The Concentration of Measure Phenomenon},
+Mathematical Surveys and Monographs, vol.~89,
+American Mathematical Society, Providence, RI, 2001.
+
+\bibitem{Manov}
+A.~D. Manov,
+\emph{An extremal problem for positive definite functions with support in a ball},
+Sb. Math. \textbf{215} (2024), no.~7, 920--931.
+\href{https://doi.org/10.4213/sm10006e}{doi:10.4213/sm10006e}.
+
+\bibitem{DLMF}
+F.~W.~J. Olver, A.~B. Olde Daalhuis, D.~W. Lozier, et al., eds.,
+\emph{NIST Digital Library of Mathematical Functions},
+Section 5.11, asymptotic expansions of the gamma and digamma functions.
+\url{https://dlmf.nist.gov/5.11}.
+
+\bibitem{Onatski}
+A. Onatski,
+\emph{Precise asymptotics for the norm of large random rectangular Toeplitz matrices},
+preprint, 2025.
+\href{https://arxiv.org/abs/2509.04349}{arXiv:2509.04349}.
+
+\bibitem{SV}
+A. Sen and B. Vir\'ag,
+\emph{The top eigenvalue of the random Toeplitz matrix and the sine kernel},
+Ann. Probab. \textbf{41} (2013), no.~6, 4050--4079.
+\href{https://doi.org/10.1214/13-AOP863}{doi:10.1214/13-AOP863};
+\href{https://arxiv.org/abs/1109.5494}{arXiv:1109.5494}.
+
+\bibitem{Tropp}
+J.~A. Tropp,
+\emph{User-friendly tail bounds for sums of random matrices},
+Found. Comput. Math. \textbf{12} (2012), no.~4, 389--434.
+\href{https://doi.org/10.1007/s10208-011-9099-z}{doi:10.1007/s10208-011-9099-z}.
+
+\end{thebibliography}
+\end{document}
